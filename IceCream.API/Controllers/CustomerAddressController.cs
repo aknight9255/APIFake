@@ -1,4 +1,4 @@
-﻿using IceCream.Models;
+﻿using IceCream.DATA;
 using IceCream.Service;
 using System;
 using System.Collections.Generic;
@@ -9,21 +9,21 @@ using System.Web.Http;
 
 namespace IceCream.API.Controllers
 {
-    public class CustomerController : ApiController
+    public class CustomerAddressController : ApiController
     {
         public IHttpActionResult GetAll()
         {
-            CustomerService service = new CustomerService();
-            var customers = service.GetCustomers();
+            CustomerAddressService service = new CustomerAddressService();
+            var customers = service.GetCustomerAddressAll();
             return Ok(customers);
         }
 
-        public IHttpActionResult Post(CustomerCreate customer)
+        public IHttpActionResult Post(CustomerAddress customerAddress,int customerID)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var service = new CustomerService();
-            if (!service.CreateCustomer(customer))
+            var service = new CustomerAddressService();
+            if (!service.CreateCustomerAddress(customerAddress, customerID))
                 return InternalServerError();
 
             return Ok();
@@ -31,15 +31,15 @@ namespace IceCream.API.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var service = new CustomerService();
-            var customer = service.GetOneCustomer(id);
+            var service = new CustomerAddressService();
+            var customer = service.GetOneCustomerAddress(id);
             return Ok(customer);
         }
 
         public IHttpActionResult Delete(int id)
         {
-            var service = new CustomerService();
-            service.DeleteCustomer(id);
+            var service = new CustomerAddressService();
+            service.DeleteCustomerAddress(id);
             return Ok();
         }
     }

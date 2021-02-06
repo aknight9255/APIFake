@@ -1,15 +1,14 @@
-﻿using System;
+﻿using IceCream.DATA;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IceCream.DATA
+namespace IceCream.Models
 {
-    public class CustomerAddress
+    public class CustomerAddressCreate
     {
-        [ForeignKey("Customer")]
         public int CustomerAddressID { get; set; }
         public virtual Customer Customer { get; set; }
         public string AddressOne { get; set; }
@@ -21,3 +20,4 @@ namespace IceCream.DATA
         public string Email { get; set; }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using IceCream.DATA;
 using IceCream.Models;
+using IceCream.Models.Flavor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,23 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
+        public IEnumerable<OrderListItem> GetOrder()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Orders
+                    .Select(
+                        e => new OrderListItem
+                        {
+                            OrderID = e.OrderID,
+                            CustomerID = e.CustomerID,
+                        }
+                        );
+                return query.ToArray();
+            }
+        }
         public void AddFlavorToOrder(int flavorID, int orderID)
         {
             using (var ctx = new ApplicationDbContext())
@@ -34,26 +52,44 @@ namespace IceCream.Service
             }
         }
 
-        public CustomerCreate GetOneOrder(int id)
+        public OrderCreateModel GetOneOrder(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Orders
                     .Single(c => c.OrderID == id);
                 return
-                    new CustomerCreate
+                    new OrderCreateModel
                     {
-                        
+                        OrderID = entity.OrderID,
+                        CustomerID = entity.CustomerID,
+                        Customer = entity.Customer
                     };
             }
         }
-
-        public bool DeleteCustomer(int customerID)
+        public IEnumerable<FlavorListItem> GetAllFlavorsByOrder(int orderID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Customers.Single(c => c.CustomerID == customerID);
-                ctx.Customers.Remove(entity);
+                var foundItems =
+                    ctx.Orders.Single(o => o.OrderID == orderID).ListOfFlavors
+                    .Select(e => new FlavorListItem
+                    {
+                        FlavorName = e.FlavorName,
+                        FlavorDesc = e.FlavorDesc,
+                        FlavorID = e.FlavorID
+                    }
+                        );
+                return foundItems.ToArray();
+            }
+        }
+
+        public bool DeleteOrder(int orderID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Orders.Single(c => c.OrderID == orderID);
+                ctx.Orders.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
         }

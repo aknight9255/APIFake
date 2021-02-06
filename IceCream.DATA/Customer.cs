@@ -14,7 +14,7 @@ namespace IceCream.DATA
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        //public virtual CustomerAddress CAddress { get; set; }
+        public virtual CustomerAddress CAddress { get; set; }
 
     }
 }

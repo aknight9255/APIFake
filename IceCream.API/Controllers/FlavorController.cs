@@ -1,4 +1,6 @@
-﻿using IceCream.Models.Flavor;
+﻿using IceCream.DATA;
+using IceCream.Models;
+using IceCream.Models.Flavor;
 using IceCream.Service;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,19 @@ namespace IceCream.API.Controllers
 
             return Ok();
         }
+        public IHttpActionResult Get(int id)
+        {
+            var service = new FlavorService();
+            var flavor = service.GetOneFlavor(id);
+            return Ok(flavor);
+        }
+        public IHttpActionResult Delete(int id)
+        {
+            var service = new FlavorService();
+            service.DeleteFlavor(id);
+            return Ok();
+        }
+
     }
 }
 
