@@ -23,7 +23,6 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-
         public IEnumerable<FlavorListItem> GetFlavor()
         {
             using (var ctx = new ApplicationDbContext())
@@ -41,7 +40,6 @@ namespace IceCream.Service
                 return query.ToArray();
             }
         }
-
         public FlavorCreate GetOneFlavor(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -57,7 +55,6 @@ namespace IceCream.Service
                     };
             }
         }
-
         public bool DeleteFlavor(int flavorId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -67,7 +64,5 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-
-
     }
 }

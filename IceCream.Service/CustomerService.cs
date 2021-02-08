@@ -23,7 +23,6 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-
         public IEnumerable<CustomerListItem> GetCustomers()
         {
             using(var ctx = new ApplicationDbContext())
@@ -42,7 +41,6 @@ namespace IceCream.Service
                 return query.ToArray();
             }
         }
-
         public CustomerCreate GetOneCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -58,7 +56,6 @@ namespace IceCream.Service
                     };
             }
         }
-
         public bool DeleteCustomer(int customerID)
         {
             using (var ctx = new ApplicationDbContext())

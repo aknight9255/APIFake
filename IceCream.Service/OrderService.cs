@@ -51,7 +51,6 @@ namespace IceCream.Service
                 var testing = ctx.SaveChanges();
             }
         }
-
         public OrderCreateModel GetOneOrder(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -84,7 +83,6 @@ namespace IceCream.Service
                 return foundItems.ToArray();
             }
         }
-
         public bool DeleteOrder(int orderID)
         {
             using (var ctx = new ApplicationDbContext())
