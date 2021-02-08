@@ -34,6 +34,7 @@ namespace IceCream.Service
                     .Select(
                         e => new CustomerListItem
                         {
+                            CustomerID = e.CustomerID,
                             FirstName = e.FirstName,
                             LastName = e.LastName
                         }

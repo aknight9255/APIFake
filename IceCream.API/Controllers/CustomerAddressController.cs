@@ -1,4 +1,5 @@
 ﻿using IceCream.DATA;
+using IceCream.Models;
 using IceCream.Service;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace IceCream.API.Controllers
             return Ok(customers);
         }
 
-        public IHttpActionResult Post(CustomerAddress customerAddress,int customerID)
+        public IHttpActionResult Post(CustomerAddressCreate customerAddress,int customerID)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

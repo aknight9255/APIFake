@@ -10,7 +10,7 @@ namespace IceCream.Service
 {
     public class CustomerAddressService
     {
-        public bool CreateCustomerAddress(CustomerAddress model,int customerID)
+        public bool CreateCustomerAddress(CustomerAddressCreate model,int customerID)
         {
             var entity = new CustomerAddress()
             {
@@ -56,14 +56,14 @@ namespace IceCream.Service
             }
         }
 
-        public CustomerAddress GetOneCustomerAddress(int id)
+        public CustomerAddressCreate GetOneCustomerAddress(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var model = ctx.CustomerAddresses
                     .Single(c => c.CustomerAddressID == id);
                 return
-                    new CustomerAddress
+                    new CustomerAddressCreate
                     {
                         CustomerAddressID = model.CustomerAddressID,
                         AddressOne = model.AddressOne,

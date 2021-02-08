@@ -63,7 +63,8 @@ namespace IceCream.Service
                     {
                         OrderID = entity.OrderID,
                         CustomerID = entity.CustomerID,
-                        Customer = entity.Customer
+                        Customer = entity.Customer,
+                        ListOfFlavors = entity.ListOfFlavors
                     };
             }
         }
