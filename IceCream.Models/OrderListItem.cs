@@ -13,8 +13,9 @@ namespace IceCream.Models
         public int OrderID { get; set; }
         [ForeignKey("Customer")]
         public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
-
+        public string City { get; set; }
+        public string FirstName { get; set; }
+        public int ZipCode { get; set; }
         public virtual ICollection<IceCreamFlavor> ListOfFlavors { get; set; }
     }
 }

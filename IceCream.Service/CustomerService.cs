@@ -35,7 +35,8 @@ namespace IceCream.Service
                         {
                             CustomerID = e.CustomerID,
                             FirstName = e.FirstName,
-                            LastName = e.LastName
+                            LastName = e.LastName,
+                            
                         }
                         );
                 return query.ToArray();

@@ -36,6 +36,9 @@ namespace IceCream.Service
                         {
                             OrderID = e.OrderID,
                             CustomerID = e.CustomerID,
+                            FirstName = e.Customer.FirstName,
+                            City = e.Customer.CAddress.City,
+                            ZipCode = e.Customer.CAddress.Zipcode,
                         }
                         );
                 return query.ToArray();
@@ -79,7 +82,7 @@ namespace IceCream.Service
                         FlavorDesc = e.FlavorDesc,
                         FlavorID = e.FlavorID
                     }
-                        );
+                     );
                 return foundItems.ToArray();
             }
         }

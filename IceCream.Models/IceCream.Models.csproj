@@ -61,6 +61,7 @@
     <Compile Include="FlavorModels\FlavorListItem.cs" />
     <Compile Include="OrderCreateModel.cs" />
     <Compile Include="OrderListItem.cs" />
+    <Compile Include="Order_FlavorListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
