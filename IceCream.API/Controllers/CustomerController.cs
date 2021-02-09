@@ -11,13 +11,6 @@ namespace IceCream.API.Controllers
 {
     public class CustomerController : ApiController
     {
-        public IHttpActionResult GetAll()
-        {
-            CustomerService service = new CustomerService();
-            var customers = service.GetCustomers();
-            return Ok(customers);
-        }
-
         public IHttpActionResult Post(CustomerCreate customer)
         {
             if (!ModelState.IsValid)
@@ -27,6 +20,13 @@ namespace IceCream.API.Controllers
                 return InternalServerError();
 
             return Ok();
+        }
+
+        public IHttpActionResult GetAll()
+        {
+            CustomerService service = new CustomerService();
+            var customers = service.GetAllCustomers();
+            return Ok(customers);
         }
 
         public IHttpActionResult Get(int id)

@@ -13,13 +13,6 @@ namespace IceCream.API.Controllers
 {
     public class FlavorController : ApiController
     {
-        public IHttpActionResult GetAll()
-        {
-            FlavorService service = new FlavorService();
-            var flavor = service.GetFlavor();
-            return Ok(flavor);
-        }
-
         public IHttpActionResult Post(FlavorCreate flavor)
         {
             if (!ModelState.IsValid)
@@ -30,6 +23,14 @@ namespace IceCream.API.Controllers
 
             return Ok();
         }
+
+        public IHttpActionResult GetAll()
+        {
+            FlavorService service = new FlavorService();
+            var flavor = service.GetAllFlavors();
+            return Ok(flavor);
+        }
+  
         public IHttpActionResult Get(int id)
         {
             var service = new FlavorService();

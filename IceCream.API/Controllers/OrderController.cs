@@ -11,20 +11,8 @@ namespace IceCream.API.Controllers
 {
     public class OrderController : ApiController
     {
-        public IHttpActionResult GetAll()
-        {
-            OrderService service = new OrderService();
-            var order = service.GetOrder();
-            return Ok(order);
-        }
-        public IHttpActionResult GetFlavorsByOrderId(int orderId)
-        {
-            OrderService service = new OrderService();
-            var flavor = service.GetAllFlavorsByOrder(orderId);
-            return Ok(flavor);
-        }
 
-        public IHttpActionResult Post(OrderCreateModel order)
+        public IHttpActionResult Post(OrderCreate order)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -34,18 +22,35 @@ namespace IceCream.API.Controllers
 
             return Ok();
         }
+
         public IHttpActionResult Post(int orderID, int flavorID)
         {
             var service = new OrderService();
             service.AddFlavorToOrder(flavorID, orderID);
             return Ok();
         }
+
+        public IHttpActionResult GetAll()
+        {
+            OrderService service = new OrderService();
+            var order = service.GetAllOrders();
+            return Ok(order);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var service = new OrderService();
             var order = service.GetOneOrder(id);
             return Ok(order);
         }
+
+        public IHttpActionResult GetFlavorsByOrderId(int orderID)
+        {
+            OrderService service = new OrderService();
+            var flavor = service.GetAllFlavorsByOrderID(orderID);
+            return Ok(flavor);
+        }
+
         public IHttpActionResult Delete(int id)
         {
             var service = new OrderService();
