@@ -54,14 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerAddressCreate.cs" />
-    <Compile Include="CustomerCreate.cs" />
-    <Compile Include="CustomerListItem.cs" />
+    <Compile Include="CustomerAddressModels\CAddressListItem.cs" />
+    <Compile Include="CustomerAddressModels\CAddressCreate.cs" />
+    <Compile Include="CustomerModels\CustomerCreate.cs" />
+    <Compile Include="CustomerModels\CustomerListItem.cs" />
     <Compile Include="FlavorModels\FlavorCreate.cs" />
     <Compile Include="FlavorModels\FlavorListItem.cs" />
-    <Compile Include="OrderCreateModel.cs" />
-    <Compile Include="OrderListItem.cs" />
-    <Compile Include="Order_FlavorListItem.cs" />
+    <Compile Include="OrderModels\OrderCreate.cs" />
+    <Compile Include="OrderModels\OrderListItem.cs" />
+    <Compile Include="OrderModels\Order_FlavorListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

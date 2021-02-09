@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IceCream.DATA
 {
-    public class IceCreamFlavor
+    public class Flavor
     {
         [Key]
         public int FlavorID { get; set; }
@@ -16,7 +16,7 @@ namespace IceCream.DATA
 
         public virtual ICollection<Order> ListOfOrders { get; set; }
 
-        public IceCreamFlavor()
+        public Flavor()
         {
             ListOfOrders = new HashSet<Order>();
         }

@@ -33,7 +33,7 @@ namespace IceCream.DATA
             return new ApplicationDbContext();
         }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<IceCreamFlavor> Flavors { get; set; }
+        public DbSet<Flavor> Flavors { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<CustomerAddress> CustomerAddresses { get; set; }
 

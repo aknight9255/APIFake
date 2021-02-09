@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace IceCream.Models
 {
-    public class OrderCreateModel
+    public class OrderCreate
     {
-        public int OrderID { get; set; }
-        [ForeignKey("Customer")]
         public int CustomerID { get; set; }
-        public virtual Customer Customer { get; set; }
-
-        public virtual ICollection<IceCreamFlavor> ListOfFlavors { get; set; }
+        public int FlavorID { get; set; }
+        public DateTimeOffset CreatedUtc { get; set; }
     }
 }

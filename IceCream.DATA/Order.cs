@@ -12,15 +12,15 @@ namespace IceCream.DATA
     {
         [Key]
         public int OrderID { get; set; }
-        [ForeignKey("Customer")]
+        public DateTimeOffset CreatedUtc { get; set; }
         public int CustomerID { get; set; }
+        [ForeignKey("Customer")]
         public virtual Customer Customer { get; set; }
-
-        public virtual ICollection<IceCreamFlavor> ListOfFlavors { get; set; }
+        public virtual ICollection<Flavor> ListOfFlavors { get; set; }
 
         public Order()
         {
-            ListOfFlavors = new HashSet<IceCreamFlavor>();
+            ListOfFlavors = new HashSet<Flavor>();
         }
 
     }

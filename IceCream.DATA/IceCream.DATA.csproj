@@ -86,7 +86,7 @@
   <ItemGroup>
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerAddress.cs" />
-    <Compile Include="IceCreamFlavor.cs" />
+    <Compile Include="Flavor.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

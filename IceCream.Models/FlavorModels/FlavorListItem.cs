@@ -11,6 +11,5 @@ namespace IceCream.Models.Flavor
     {
         public int FlavorID { get; set; }
         public string FlavorName { get; set; }
-        public string FlavorDesc { get; set; }
     }
 }

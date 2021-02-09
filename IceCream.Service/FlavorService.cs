@@ -12,7 +12,7 @@ namespace IceCream.Service
     {
         public bool CreateFlavor(FlavorCreate model)
         {
-            var entity = new IceCreamFlavor()
+            var entity = new Flavor()
             {
                 FlavorName = model.FlavorName,
                 FlavorDesc = model.FlavorDesc
