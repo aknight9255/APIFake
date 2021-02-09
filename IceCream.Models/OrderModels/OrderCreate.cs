@@ -11,7 +11,5 @@ namespace IceCream.Models
     public class OrderCreate
     {
         public int CustomerID { get; set; }
-        public int FlavorID { get; set; }
-        public DateTimeOffset CreatedUtc { get; set; }
     }
 }

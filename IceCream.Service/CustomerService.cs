@@ -23,7 +23,7 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<CustomerListItem> GetCustomers()
+        public IEnumerable<CustomerListItem> GetAllCustomers()
         {
             using(var ctx = new ApplicationDbContext())
             {
@@ -36,32 +36,33 @@ namespace IceCream.Service
                             CustomerID = e.CustomerID,
                             FirstName = e.FirstName,
                             LastName = e.LastName,
-                            
+                            Zipcode = e.CAddress.Zipcode
                         }
                         );
                 return query.ToArray();
             }
         }
-        public CustomerCreate GetOneCustomer(int id)
+        public CustomerListItem GetOneCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Customers
                     .Single(c => c.CustomerID == id);
                 return
-                    new CustomerCreate
+                    new CustomerListItem
                     {
+                        CustomerID = entity.CustomerID,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        CustomerID = entity.CustomerID
+                        Zipcode = entity.CAddress.Zipcode
                     };
             }
         }
-        public bool DeleteCustomer(int customerID)
+        public bool DeleteCustomer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Customers.Single(c => c.CustomerID == customerID);
+                var entity = ctx.Customers.Single(c => c.CustomerID == id);
                 ctx.Customers.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }

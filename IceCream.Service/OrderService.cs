@@ -11,37 +11,18 @@ namespace IceCream.Service
 {
     public class OrderService
     {
-        public bool CreateOrder(OrderCreateModel order)
+        public bool CreateOrder(OrderCreate order)
         {
-            var entity = new Order
+            var entity = new Order()
             {
+                CreatedUtc = DateTimeOffset.Now,
                 CustomerID = order.CustomerID,
-                Customer = order.Customer,
             };
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Orders.Add(entity);
                 return ctx.SaveChanges() == 1;
-            }
-        }
-        public IEnumerable<OrderListItem> GetOrder()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .Orders
-                    .Select(
-                        e => new OrderListItem
-                        {
-                            OrderID = e.OrderID,
-                            CustomerID = e.CustomerID,
-                            FirstName = e.Customer.FirstName,
-                            City = e.Customer.CAddress.City,
-                            ZipCode = e.Customer.CAddress.Zipcode,
-                        }
-                        );
-                return query.ToArray();
             }
         }
         public void AddFlavorToOrder(int flavorID, int orderID)
@@ -54,23 +35,44 @@ namespace IceCream.Service
                 var testing = ctx.SaveChanges();
             }
         }
-        public OrderCreateModel GetOneOrder(int id)
+        public IEnumerable<OrderListItem> GetAllOrders()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Orders
+                    .Select(
+                        e => new OrderListItem
+                        {
+                            OrderID = e.OrderID,
+                            CustomerID = e.CustomerID,
+                            FirstName = e.Customer.FirstName,
+                            ZipCode = e.Customer.CAddress.Zipcode,
+                            FlavorCount = e.ListOfFlavors.Count
+                        }
+                        );
+                return query.ToArray();
+            }
+        }
+        public OrderListItem GetOneOrder(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Orders
                     .Single(c => c.OrderID == id);
                 return
-                    new OrderCreateModel
+                    new OrderListItem
                     {
                         OrderID = entity.OrderID,
                         CustomerID = entity.CustomerID,
-                        Customer = entity.Customer,
-                        ListOfFlavors = entity.ListOfFlavors
+                        FirstName = entity.Customer.FirstName,
+                        ZipCode = entity.Customer.CAddress.Zipcode,
+                        FlavorCount = entity.ListOfFlavors.Count
                     };
             }
         }
-        public IEnumerable<FlavorListItem> GetAllFlavorsByOrder(int orderID)
+        public IEnumerable<FlavorListItem> GetAllFlavorsByOrderID(int orderID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -78,9 +80,7 @@ namespace IceCream.Service
                     ctx.Orders.Single(o => o.OrderID == orderID).ListOfFlavors
                     .Select(e => new FlavorListItem
                     {
-                        FlavorName = e.FlavorName,
-                        FlavorDesc = e.FlavorDesc,
-                        FlavorID = e.FlavorID
+                       FlavorName = e.FlavorName,
                     }
                      );
                 return foundItems.ToArray();

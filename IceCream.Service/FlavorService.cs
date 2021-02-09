@@ -23,7 +23,7 @@ namespace IceCream.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<FlavorListItem> GetFlavor()
+        public IEnumerable<FlavorListItem> GetAllFlavors()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -34,7 +34,6 @@ namespace IceCream.Service
                         e => new FlavorListItem
                         {
                             FlavorName = e.FlavorName,
-                            FlavorDesc = e.FlavorDesc
                         }
                         );
                 return query.ToArray();
