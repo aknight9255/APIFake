@@ -39,6 +39,21 @@ namespace IceCream.Service
                 return query.ToArray();
             }
         }
+        public IEnumerable<FlavorListItem> GetAllFlavorsByOrderID(int orderID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var foundItems =
+                    ctx.Orders.Single(o => o.OrderID == orderID).ListOfFlavors
+                    .Select(e => new FlavorListItem
+                    {
+                        FlavorID = e.FlavorID,
+                        FlavorName = e.FlavorName,
+                    }
+                     );
+                return foundItems.ToArray();
+            }
+        }
         public FlavorCreate GetOneFlavor(int id)
         {
             using (var ctx = new ApplicationDbContext())

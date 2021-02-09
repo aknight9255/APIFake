@@ -30,7 +30,13 @@ namespace IceCream.API.Controllers
             var flavor = service.GetAllFlavors();
             return Ok(flavor);
         }
-  
+        public IHttpActionResult GetFlavorsByOrderId(int orderID)
+        {
+            FlavorService service = new FlavorService();
+            var flavor = service.GetAllFlavorsByOrderID(orderID);
+            return Ok(flavor);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var service = new FlavorService();

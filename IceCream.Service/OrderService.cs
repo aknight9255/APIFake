@@ -16,7 +16,7 @@ namespace IceCream.Service
             var entity = new Order()
             {
                 CreatedUtc = DateTimeOffset.Now,
-                CustomerID = order.CustomerID,
+                CustomerID = order.CustomerID
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -70,20 +70,6 @@ namespace IceCream.Service
                         ZipCode = entity.Customer.CAddress.Zipcode,
                         FlavorCount = entity.ListOfFlavors.Count
                     };
-            }
-        }
-        public IEnumerable<FlavorListItem> GetAllFlavorsByOrderID(int orderID)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var foundItems =
-                    ctx.Orders.Single(o => o.OrderID == orderID).ListOfFlavors
-                    .Select(e => new FlavorListItem
-                    {
-                       FlavorName = e.FlavorName,
-                    }
-                     );
-                return foundItems.ToArray();
             }
         }
         public bool DeleteOrder(int orderID)

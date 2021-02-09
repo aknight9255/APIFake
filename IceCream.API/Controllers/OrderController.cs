@@ -43,14 +43,6 @@ namespace IceCream.API.Controllers
             var order = service.GetOneOrder(id);
             return Ok(order);
         }
-
-        public IHttpActionResult GetFlavorsByOrderId(int orderID)
-        {
-            OrderService service = new OrderService();
-            var flavor = service.GetAllFlavorsByOrderID(orderID);
-            return Ok(flavor);
-        }
-
         public IHttpActionResult Delete(int id)
         {
             var service = new OrderService();

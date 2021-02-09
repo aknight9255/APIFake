@@ -11,5 +11,6 @@ namespace IceCream.Models
     public class OrderCreate
     {
         public int CustomerID { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

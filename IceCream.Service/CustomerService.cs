@@ -36,7 +36,6 @@ namespace IceCream.Service
                             CustomerID = e.CustomerID,
                             FirstName = e.FirstName,
                             LastName = e.LastName,
-                            Zipcode = e.CAddress.Zipcode
                         }
                         );
                 return query.ToArray();
@@ -54,7 +53,6 @@ namespace IceCream.Service
                         CustomerID = entity.CustomerID,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        Zipcode = entity.CAddress.Zipcode
                     };
             }
         }
