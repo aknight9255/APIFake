@@ -19,12 +19,12 @@ namespace IceCream.API.Controllers
             return Ok(customers);
         }
 
-        public IHttpActionResult Post(CustomerAddressCreate customerAddress,int customerID)
+        public IHttpActionResult Post(CustomerAddressCreate customerAddress, int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var service = new CustomerAddressService();
-            if (!service.CreateCustomerAddress(customerAddress, customerID))
+            if (!service.CreateCustomerAddress(customerAddress, id))
                 return InternalServerError();
 
             return Ok();
